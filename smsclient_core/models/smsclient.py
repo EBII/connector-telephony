@@ -6,7 +6,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import Warning
 import urllib
 import logging
-from odoo.addons.server_environment import serv_config
+#from odoo.addons.server_tools.keychain import
 _logger = logging.getLogger(__name__)
 
 
@@ -23,6 +23,25 @@ CLASSES_LIST = [
     ('2', 'SIM'),
     ('3', 'Toolkit')
 ]
+
+class SmsAccount(models.Model):
+    _inherit = 'keychain.account'
+
+    namespace = fields.Selection(
+        selection_add=[('SMS_CLIENT', 'SMS')])
+
+    def _sms_client_init_data(self):
+        return {
+            "url_service": "",
+            "sms_account": "",
+            "login": "",
+            "password": "",
+            "from": "",
+        }
+
+    def _sms_client_validate_data(self, data):
+
+        return len(data.get("agencyCode") > 3)
 
 
 class partner_sms_send(models.Model):

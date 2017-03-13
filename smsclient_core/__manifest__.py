@@ -8,7 +8,7 @@
     "depends": ["base",
                 "email_template",
                 'base_phone',
-                'server_environment',
+                'keychain',
                 ],
     "author": "Julius Network Solutions,SYLEAM,OpenERP SA,Akretion,"
               "Odoo Community Association (OCA)",
